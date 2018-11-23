@@ -14,16 +14,16 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>GD32F450VE</Device>
+          <Device>GD32F403VE</Device>
           <Vendor>GigaDevice</Vendor>
           <PackID>GigaDevice.GD32F4xx_DFP.1.0.4</PackID>
           <PackURL>http://gd32mcu.21ic.com/data/documents/yingyongruanjian/</PackURL>
-          <Cpu>IRAM(0x20000000,0x030000) IRAM2(0x10000000,0x010000) IROM(0x08000000,0x080000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x010000) IROM(0x08000000,0x080000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0GD32F4xx_512KB -FS08000000 -FL080000 -FP0($$Device:GD32F450VE$Flash\GD32F4xx_512KB.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0GD32F403 -FS08000000 -FL010000 -FP0($$Device:GD32F403VE$Flash\GD32F403.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:GD32F450VE$Device\Include\gd32f4xx.h</RegisterFile>
+          <RegisterFile>$$Device:GD32F403VE$Device\F403\Include\gd32f403.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:GD32F450VE$SVD\GD32F4xx.svd</SFDFile>
+          <SFDFile>$$Device:GD32F403VE$SVD\GD32F403.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -184,7 +184,7 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
-            <hadIRAM2>1</hadIRAM2>
+            <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>1</useUlib>
@@ -244,7 +244,7 @@
               <IRAM>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x30000</Size>
+                <Size>0x10000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
@@ -299,12 +299,12 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x30000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
-                <StartAddress>0x10000000</StartAddress>
-                <Size>0x10000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
             <RvctStartVector></RvctStartVector>
@@ -334,9 +334,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,GD32F450</Define>
+              <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\third_lib\CMIS;..\third_lib\FreeRtos\include;..\third_lib\peripheral_lib\Include;..\third_lib\FreeRtos;..\third_lib\FreeRtos\portable\RVDS;..\app;..\third_lib\FreeRtos\portable\RVDS\ARM_CM4F</IncludePath>
+              <IncludePath>..\third_lib\CMIS;..\third_lib\FreeRtos\include;..\third_lib\peripheral_lib\Include;..\third_lib\FreeRtos;..\third_lib\FreeRtos\portable\RVDS;..\app;..\third_lib\FreeRtos\portable\RVDS\ARM_CM4F;.\RTE</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -391,14 +391,14 @@
               <FilePath>..\app\gd32f4xx_it.h</FilePath>
             </File>
             <File>
-              <FileName>gd32f4xx_libopt.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\app\gd32f4xx_libopt.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_libopt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\app\gd32f403_libopt.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -463,167 +463,152 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>peripheral_lib</GroupName>
+          <GroupName>cmis</GroupName>
           <Files>
             <File>
-              <FileName>gd32f4xx_adc.c</FileName>
+              <FileName>system_gd32f403.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_adc.c</FilePath>
+              <FilePath>..\third_lib\CMIS\system_gd32f403.c</FilePath>
             </File>
             <File>
-              <FileName>gd32f4xx_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_can.c</FilePath>
+              <FileName>gd32f403.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\third_lib\CMIS\gd32f403.h</FilePath>
             </File>
             <File>
-              <FileName>gd32f4xx_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_ctc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_ctc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_dbg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_dbg.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_dci.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_dci.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_enet.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_enet.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_exmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_exmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_exti.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_fwdgt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_fwdgt.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_ipa.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_ipa.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_iref.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_iref.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_misc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_pmu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_pmu.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_rcu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_rcu.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_sdio.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_syscfg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_syscfg.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_tli.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_tli.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_trng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_trng.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>gd32f4xx_wwdgt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\third_lib\peripheral_lib\Source\gd32f4xx_wwdgt.c</FilePath>
+              <FileName>startup_gd32f403.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\third_lib\CMIS\startup_gd32f403.s</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>cmis</GroupName>
+          <GroupName>common</GroupName>
           <Files>
             <File>
-              <FileName>system_gd32f4xx.c</FileName>
+              <FileName>soft_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\third_lib\CMIS\system_gd32f4xx.c</FilePath>
+              <FilePath>..\common\soft_timer.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>peripheral_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>gd32f403_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_adc.c</FilePath>
             </File>
             <File>
-              <FileName>startup_gd32f450.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\third_lib\CMIS\startup_gd32f450.s</FilePath>
+              <FileName>gd32f403_bkp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_ctc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_ctc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_dbg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_dbg.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_exmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_exmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_fwdgt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_fwdgt.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_pmu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_pmu.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_rcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_rcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd32f403_wwdgt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\third_lib\peripheral_lib\Source\gd32f403_wwdgt.c</FilePath>
             </File>
           </Files>
         </Group>

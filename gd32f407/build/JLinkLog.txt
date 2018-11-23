@@ -1,0 +1,33 @@
+
+T2E74 000:296 SEGGER J-Link V5.12f Log File (0001ms, 0284ms total)
+T2E74 000:296 DLL Compiled: May 17 2016 16:03:35 (0001ms, 0284ms total)
+T2E74 000:296 Logging started @ 2018-11-21 11:13 (0001ms, 0284ms total)
+T2E74 000:297 JLINK_SetWarnOutHandler(...) (0000ms, 0284ms total)
+T2E74 000:297 JLINK_OpenEx(...)
+Firmware: J-Link OB-STM32F072-CortexM compiled Mar  8 2020 11:15:54
+Hardware: V1.00
+S/N: 20171111
+Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash, RDDI  returns O.K. (0278ms, 0562ms total)
+T2E74 000:575 JLINK_SetErrorOutHandler(...) (0000ms, 0562ms total)
+T2E74 000:575 JLINK_ExecCommand("ProjectFile = "E:\gd32f4\trunk\gd32f407\build\JLinkSettings.ini"", ...)Device "CORTEX-M4" selected.  returns 0x00 (0022ms, 0584ms total)
+T2E74 000:610 JLINK_ExecCommand("Device = GD32F403VE", ...)Device "CORTEX-M4" selected.  returns 0x00 (0010ms, 0594ms total)
+T2E74 000:620 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0594ms total)
+T2E74 000:620 JLINK_GetHardwareVersion()  returns 0x2710 (0000ms, 0594ms total)
+T2E74 000:620 JLINK_GetDLLVersion()  returns 51206 (0000ms, 0594ms total)
+T2E74 000:620 JLINK_GetFirmwareString(...) (0000ms, 0594ms total)
+T2E74 000:646 JLINK_GetDLLVersion()  returns 51206 (0000ms, 0594ms total)
+T2E74 000:646 JLINK_GetCompileDateTime() (0000ms, 0594ms total)
+T2E74 000:653 JLINK_GetFirmwareString(...) (0000ms, 0594ms total)
+T2E74 000:660 JLINK_GetHardwareVersion()  returns 0x2710 (0001ms, 0595ms total)
+T2E74 000:695 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0007ms, 0602ms total)
+T2E74 000:702 JLINK_SetSpeed(5000) (0002ms, 0604ms total)
+T2E74 000:704 JLINK_GetId() >0x108 TIF> >0x108 TIF> >0x108 TIF> >0x108 TIF> >0x108 TIF> >0x108 TIF> >0x108 TIF> >0x108 TIF>
+                JLINK_EMU_HasCapEx(0x0000002C)  returns 0x01 (0000ms, 0000ms total)
+              
+  ***** Error: Communication timed out: Requested 20 bytes, received 0 bytes !
+  ***** Error: Could not read hardware status!  returns 0x00000000 (5884ms, 6488ms total)
+T349C 000:704 
+  ***** Error: Connection to emulator lost! (6010ms, 12498ms total)
+T2E74 061:812 JLINK_Close() (0000ms, 6488ms total)
+T2E74 061:812  (0000ms, 6488ms total)
+T2E74 061:812 Closed (0000ms, 6488ms total)

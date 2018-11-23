@@ -1,9 +1,10 @@
-#include "gd32f4xx.h"
+#include "gd32f403.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
 
 #define START_TASK_PRIO		1
-#define START_STK_SIZE 		128  
+#define START_STK_SIZE 		256  
 
 TaskHandle_t StartTask_Handler;
 void start_task(void *pvParameters);
@@ -12,7 +13,7 @@ void start_task(void *pvParameters);
 
 int main(void)
 {
-   // systick_config();
+    //systick_config();
     xTaskCreate((TaskFunction_t )start_task,            
                 (const char*    )"start_task",        
                 (uint16_t       )START_STK_SIZE,       
@@ -26,7 +27,7 @@ void start_task(void *pvParameters)
 {
   while(1)
   {
-  
+      vTaskDelay(10 / portTICK_PERIOD_MS);
   }
 }
 
