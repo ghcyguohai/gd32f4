@@ -31,6 +31,7 @@ void start_task(void *pvParameters)
 		  /*test file */
 		  /*feature 1 */
 		  /*feature 2 */
+		  /*feature 3 */
   }
 }
 
