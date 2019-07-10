@@ -33,6 +33,7 @@ void start_task(void *pvParameters)
 		  /*feature 2 */
 		  /*feature 3 */
 		  /*feature 4 */
+		  /*this is a release version*/
   }
 }
 
