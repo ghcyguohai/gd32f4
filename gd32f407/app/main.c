@@ -40,6 +40,7 @@ void start_task(void *pvParameters)
 
 		  /*feature merge test 1*/
 		  /*feature merge test 2*/
+		  /*this is a coordinate develop release 2*/
   }
 }
 
